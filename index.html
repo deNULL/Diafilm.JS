@@ -3,103 +3,214 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Диафильм.JS</title>
+    <meta name="description" content="JavaScript-библиотека для показа простых презентаций">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <style>
-            body {
-                padding-top: 50px;
-                padding-bottom: 20px;
-            }
-        </style>
-        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        body {
+          padding-top: 50px;
+          padding-bottom: 20px;
+        }
 
-        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-    </head>
-    <body>
+        /* Styles to apply to all Diafilm components */
+        .df-slides {
+          height: 100%;
+          background: #EEE;
+          overflow: hidden;
+          padding: 0;
+          border: 1px solid #EEE;
+        }
+        .df-slide {
+          height: 100%;
+          line-height: 2;
+          background: #fff;
+          box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+          margin-bottom: 12px;
+          padding: 40px 40px;
+          transition: margin-top 0.3s;
+        }
+        .df-thumbs {
+          height: 100%;
+          background: #EEE;
+          overflow-y: scroll;
+          padding-left: 6px;
+          padding-right:20px;
+        }
+        .df-thumb {
+          margin: 6px 0;
+          cursor: pointer;
+          opacity: 0.4;
+          transition: opacity 0.3s;
+          box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        .df-thumb div {
+          padding: 40px 40px;
+          line-height: 2;
+          background: #fff;
+
+          -moz-user-select: none;
+          -webkit-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+        }
+        .df-thumb.active, .df-thumb:hover {
+          opacity: 1;
+        }
+        .df-controls {
+
+        }
+    </style>
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+  </head>
+  <body>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Project name</a>
-        </div>
-        <div class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right" role="form">
-            <div class="form-group">
-              <input type="text" placeholder="Email" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
-          </form>
-        </div><!--/.navbar-collapse -->
-      </div>
-    </div>
-
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-      <div class="container">
-        <h1>Hello, world!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a class="btn btn-primary btn-lg" role="button">Learn more &raquo;</a></p>
-      </div>
-    </div>
 
     <div class="container">
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+      <div id="about">
+        <div class="row" style="height: 500px; margin-bottom: 15px;">
+          <div class="df-slides col-md-9">
+            <div class="df-slide">
+              <center style="padding-top: 60px">
+                <h2>Диафильм</h2>
+                <p class="lead">JavaScript-библиотека для показа простых презентаций</p>
+                <p style="margin-top: 200px">Денис Ольшин<br/><a href="http://denull.ru/" target="_blank">denull.ru</a></p>
+              </center>
+            </div>
+            <div class="df-slide">
+              <h4>Фичи:</h4>
+              <ul>
+                <li>Полноэкранный режим (WIP)</li>
+                <li>Возможность добавления несколько презентаций на страницу</li>
+                <li>Автоматически генерируемые превьюшки для быстрой навигации</li>
+                <li>Простая <a href="about:blank" onclick="about.slide(2); return false;">HTML-разметка</a> (каждый слайд — блок класса <strong>df-slide</strong>)</li>
+                <li>Возможность ссылаться на страницы (см. предыдущий пункт этого списка)</li>
+                <li>Компактный размер JS-кода (2 Кб в несжатом виде)</li>
+                <li>Минимум ограничений на оформление (у корневого элемента должны быть только дочерние блоки <strong>df-slides</strong> (и <strong>df-slide</strong> внутри), <strong>df-thumbs</strong> и <strong>df-controls</strong>, их внешний вид почти не контролируется библиотекой)</li>
+              </ul>
+            </div>
+            <div class="df-slide">
+              <h4>Разметка:</h4>
+<pre>
+<span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#274796; '> </span><span style='color:#074726; '>id</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"about"</span><span style='color:#a65700; '>></span>
+  <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#274796; '> </span><span style='color:#074726; '>class</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"row"</span><span style='color:#274796; '> </span><span style='color:#074726; '>style</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"</span><span style='color:#bb7977; font-weight:bold; '>height</span><span style='color:#808030; '>:</span><span style='color:#274796; '> </span><span style='color:#008c00; '>500</span><span style='color:#006600; '>px</span><span style='color:#800080; '>;</span><span style='color:#274796; '> </span><span style='color:#bb7977; font-weight:bold; '>margin-bottom</span><span style='color:#808030; '>:</span><span style='color:#274796; '> </span><span style='color:#008c00; '>15</span><span style='color:#006600; '>px</span><span style='color:#800080; '>;</span><span style='color:#0000e6; '>"</span><span style='color:#a65700; '>></span>
+    <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#274796; '> </span><span style='color:#074726; '>class</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"df-slides col-md-9"</span><span style='color:#a65700; '>></span>
+      <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#274796; '> </span><span style='color:#074726; '>class</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"df-slide"</span><span style='color:#a65700; '>></span>
+        ...
+      <span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#a65700; '>></span>
+      <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#274796; '> </span><span style='color:#074726; '>class</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"df-slide"</span><span style='color:#a65700; '>></span>
+        ...
+      <span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#a65700; '>></span>
+    <span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#a65700; '>></span>
+    <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#274796; '> </span><span style='color:#074726; '>class</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"df-thumbs col-md-3"</span><span style='color:#a65700; '>></span><span style='color:#696969; '>&lt;!-- заполнится автоматически --></span><span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#a65700; '>></span>
+  <span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#a65700; '>></span>
+  <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#274796; '> </span><span style='color:#074726; '>class</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"df-controls row"</span><span style='color:#a65700; '>></span>
+    <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>button</span><span style='color:#274796; '> </span><span style='color:#074726; '>class</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"btn"</span><span style='color:#274796; '> </span><span style='color:#074726; '>onclick</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"about.slide(0);"</span><span style='color:#a65700; '>></span>« В начало<span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>button</span><span style='color:#a65700; '>></span>
+    <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>button</span><span style='color:#274796; '> </span><span style='color:#074726; '>class</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"btn"</span><span style='color:#274796; '> </span><span style='color:#074726; '>onclick</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"about.prev();"</span><span style='color:#a65700; '>></span>« Назад<span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>button</span><span style='color:#a65700; '>></span>
+    <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>button</span><span style='color:#274796; '> </span><span style='color:#074726; '>class</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"btn"</span><span style='color:#274796; '> </span><span style='color:#074726; '>onclick</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"about.next();"</span><span style='color:#a65700; '>></span>Следующий слайд »<span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>button</span><span style='color:#a65700; '>></span>
+  <span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#a65700; '>></span>
+<span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#a65700; '>></span>
+</pre>
+            </div>
+            <div class="df-slide">
+              <h4>Инициализация:</h4>
+<pre>
+<span style='color:#800000; font-weight:bold; '>var</span> about <span style='color:#808030; '>=</span> <span style='color:#800000; font-weight:bold; '>new</span> Diafilm<span style='color:#808030; '>(</span>$<span style='color:#808030; '>(</span><span style='color:#0000e6; '>'#about'</span><span style='color:#808030; '>)</span><span style='color:#808030; '>,</span> <span style='color:#800080; '>{</span>
+  onSlide<span style='color:#800080; '>:</span> <span style='color:#800000; font-weight:bold; '>function</span><span style='color:#808030; '>(</span><span style='color:#797997; '>index</span><span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
+    $<span style='color:#808030; '>(</span><span style='color:#0000e6; '>'#aboutReset, #aboutPrev'</span><span style='color:#808030; '>)</span><span style='color:#808030; '>.</span>toggleClass<span style='color:#808030; '>(</span><span style='color:#0000e6; '>'disabled'</span><span style='color:#808030; '>,</span> <span style='color:#797997; '>index</span> <span style='color:#808030; '>&lt;=</span> <span style='color:#008c00; '>0</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+    $<span style='color:#808030; '>(</span><span style='color:#0000e6; '>'#aboutNext'</span><span style='color:#808030; '>)</span><span style='color:#808030; '>.</span>toggleClass<span style='color:#808030; '>(</span><span style='color:#0000e6; '>'disabled'</span><span style='color:#808030; '>,</span> <span style='color:#797997; '>index</span> <span style='color:#808030; '>>=</span> <span style='color:#808030; '>(</span><span style='color:#800000; font-weight:bold; '>this</span><span style='color:#808030; '>.</span>slides<span style='color:#808030; '>.</span>length <span style='color:#808030; '>-</span> <span style='color:#008c00; '>1</span><span style='color:#808030; '>)</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+  <span style='color:#800080; '>}</span>
+<span style='color:#800080; '>}</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+</pre>
+              <p>Конструктор <strong>Diafilm</strong> принимает два параметра: <strong>elem</strong>, jQuery-объект, содержащий корневой элемент презентации, и <strong>opts</strong>, объект опций. Пока что поддерживается одна опция: функция-коллбэк <strong>onSlide</strong>, вызываемая при смене слайда и принимающая единственным параметром индекс слайда.</p>
+
+              <p>О методах и свойствах созданного объекта — на <a href="about:blank" onclick="about.next(); return false;">следующем слайде</a>.</p>
+            </div>
+            <div class="df-slide">
+              <h4>Методы</h4>
+              <ul>
+                <li><strong>slide(index)</strong> — перейти на слайд с номером <strong>index</strong>,
+                <li><strong>prev([offset])</strong> — перейти к предыдущему слайду (или сместиться на <strong>offset</strong> слайдов назад),
+                <li><strong>next([offset])</strong> — перейти к следующему слайду (или сместиться на <strong>offset</strong> слайдов вперёд).
+              </ul>
+              <h4>Свойства</h4>
+              <ul>
+                <li><strong>elem</strong> — jQuery-объект, содержащий корневой элемент презентации,
+                <li><strong>opts</strong> — опции,
+                <li><strong>slides</strong> — jQuery-объект, содержащий все слайды презентации (блоки с классом <strong>df-slide</strong>),
+                <li><strong>thumbs</strong> — jQuery-объект, содержащий превью всех слайдов презентации (автоматически созданные блоки с классом <strong>df-thumb</strong>).
+              </ul>
+            </div>
+            <div class="df-slide">
+              <h4>Зависимости</h4>
+              <ul>
+                <li>jQuery</li>
+              </ul>
+              <p>Это демо сверстано с использование <a href="http://html5boilerplate.com/" target="_blank">HTML5 Boilerplate</a> (и, в частности, <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a>), но я не вижу причин, по которым без них нельзя было бы обойтись.</p>
+            </div>
+            <div class="df-slide">
+              <h4>TODO</h4>
+              <ul>
+                <li>Автоматический скроллинг списка слайдов</li>
+                <li>Полноэкранный режим</li>
+                <li>Переход по нажатиям клавиш (вправо, влево, пробел)</li>
+                <li>Исправить гличащие кнопки, когда они становятся задисэйбленными</li>
+              </ul>
+            </div>
+          </div>
+          <div class="df-thumbs col-md-3"></div>
         </div>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-       </div>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        <div class="df-controls row">
+          <div class="col-md-3">
+            <button id="aboutReset" type="button" class="btn btn-block btn-lg btn-default" onclick="about.slide(0); return false;">« В начало</button>
+          </div>
+          <div class="col-md-3">
+            <button id="aboutPrev" type="button" class="btn btn-block btn-lg btn-default" onclick="about.prev(); return false;">« Назад</button>
+          </div>
+          <div class="col-md-6">
+            <button id="aboutNext" type="button" class="btn btn-block btn-lg btn-primary" onclick="about.next(); return false;">Следующий слайд »</button>
+          </div>
         </div>
       </div>
 
       <hr>
 
       <footer>
-        <p>&copy; Company 2014</p>
+        <p>&copy; Денис Ольшин 2014</p>
       </footer>
-    </div> <!-- /container -->        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.1.min.js"><\/script>')</script>
+    </div> <!-- /container -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.1.min.js"><\/script>')</script>
 
-        <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="js/vendor/bootstrap.min.js"></script>
 
-        <script src="js/main.js"></script>
+    <script src="diafilm.js"></script>
+    <script>
+      var about = new Diafilm($('#about'), {
+        onSlide: function(index) {
+          $('#aboutReset, #aboutPrev').attr('disabled', index <= 0);
+          $('#aboutNext').attr('disabled', index >= (this.slides.length - 1));
+        }
+      });
+    </script>
 
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='//www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X');ga('send','pageview');
-        </script>
-    </body>
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script>
+        (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+        function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+        e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+        e.src='//www.google-analytics.com/analytics.js';
+        r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+        ga('create','UA-XXXXX-X');ga('send','pageview');
+    </script>
+  </body>
 </html>
