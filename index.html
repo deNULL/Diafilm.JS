@@ -17,6 +17,21 @@
           padding-bottom: 20px;
         }
 
+        .fullscreen {
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          padding: 10px 10px 7px 12px;
+          opacity: 0;
+          transition: opacity 0.5s;
+        }
+        .fullscreen:active, .fullscreen:focus {
+          outline: none !important;
+        }
+        .df-slides:hover .fullscreen {
+          opacity: 0.8;
+        }
+
         /* Styles to apply to all Diafilm components */
         .df-slides {
           height: 100%;
@@ -41,6 +56,11 @@
           overflow-y: scroll;
           padding-left: 6px;
           padding-right:20px;
+          position: relative;
+          transition: opacity 0.5s;
+        }
+        .df-thumbs:hover {
+          opacity: 1;
         }
         .df-thumb {
           margin: 6px 0;
@@ -87,6 +107,7 @@
       <div id="about">
         <div class="row" style="height: 500px; margin-bottom: 15px;">
           <div class="df-slides col-xs-9">
+            <button type="button" class="btn btn-lg btn-default fullscreen" onclick="about.fullscreen();"><span class="glyphicon glyphicon-resize-full"></span></button>
             <div class="df-slide">
               <center style="padding-top: 60px">
                 <h2>Диафильм</h2>
@@ -97,7 +118,7 @@
             <div class="df-slide">
               <h4>Фичи:</h4>
               <ul>
-                <li>Полноэкранный режим (WIP)</li>
+                <li>Полноэкранный режим</li>
                 <li>Возможность добавления несколько презентаций на страницу</li>
                 <li>Автоматически генерируемые превьюшки для быстрой навигации</li>
                 <li>Простая <a href="about:blank" onclick="about.slide(2); return false;">HTML-разметка</a> (каждый слайд — блок класса <strong>df-slide</strong>)</li>
@@ -170,7 +191,8 @@
               <h4>TODO</h4>
               <ul>
                 <li>Автоматический скроллинг списка слайдов</li>
-                <li>Полноэкранный режим</li>
+                <li><s>Полноэкранный режим</s></li>
+                <li>Всплывающие панели в полноэкранном режиме</li>
                 <li>Переход по нажатиям клавиш (вправо, влево, пробел)</li>
                 <li>Исправить гличащие кнопки, когда они становятся задисэйбленными</li>
               </ul>

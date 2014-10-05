@@ -23,9 +23,17 @@
 
     this.resize();
 
-    window.addEventListener('resize', function() {
+    $(window).resize(function() {
       df.resize();
-    }, true);
+    });
+
+    $(df.slidesWrap).bind('mousewheel', function(event) {
+      if (event.originalEvent.wheelDelta >= 0) {
+        df.prev();
+      } else {
+        df.next();
+      }
+    });
 
     this.slide(0);
   }
@@ -36,7 +44,8 @@
     df.slidesWidth = df.slidesWrap.width();
     df.slidesHeight = df.slidesWrap.height();
 
-    df.slidesOffs = (df.slides.length > 1) ? (df.slides.slice(1, 2).position().top - parseInt(df.slides.first().css('marginTop'))) : 0;
+    df.slidesOffs = (df.slides.length > 1) ? (df.slides.slice(1, 2).position().top - parseFloat(df.slides.first().css('marginTop'))) : 0;
+    df.slides.first().css('marginTop', - df.index * df.slidesOffs);
 
     df.thumbsWidth = df.thumbsWrap.width();
     df.thumbsHeight = df.thumbsWidth / (df.slidesWidth / df.slidesHeight);
@@ -55,6 +64,42 @@
         oTransform: 'scale(' + (df.thumbsWidth / df.slidesWidth) + ')',
       });
     });
+  }
+  Df.prototype.fullscreen = function(toggle) {
+    var df = this;
+
+    if (toggle === undefined) {
+      toggle = !df.fs;
+    }
+
+    df.fs = toggle;
+
+    var wrap = df.slidesWrap.get(0);
+    if (toggle) {
+      if (wrap.requestFullscreen) {
+        wrap.requestFullscreen();
+      } else if (wrap.msRequestFullscreen) {
+        wrap.msRequestFullscreen();
+      } else if (wrap.mozRequestFullScreen) {
+        wrap.mozRequestFullScreen();
+      } else if (wrap.webkitRequestFullscreen) {
+        wrap.webkitRequestFullscreen();
+      }
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else
+      if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+      } else
+      if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      } else
+      if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+      }
+    }
+    df.resize();
   }
   Df.prototype.slide = function(index) {
     index = Math.min(Math.max(index, 0), this.slides.length - 1);
