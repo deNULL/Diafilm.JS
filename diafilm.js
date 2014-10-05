@@ -4,26 +4,50 @@
 
     this.elem = elem;
     this.opts = opts || {};
-    var slidesWrap = elem.find('.df-slides');
-    this.slides = slidesWrap.find('.df-slide');
-    df.slidesWidth = slidesWrap.width();
-    df.slidesHeight = slidesWrap.height();
-    df.slidesOffs = this.slides.length > 1 ? this.slides.slice(1, 2).position().top : 0;
+    this.slidesWrap = elem.find('.df-slides');
+    this.slides = df.slidesWrap.find('.df-slide');
 
-    var thumbsWrap = elem.find('.df-thumbs');
-    df.thumbsWidth = thumbsWrap.width();
-    df.thumbsHeight = df.thumbsWidth / (df.slidesWidth / df.slidesHeight);
+    this.thumbsWrap = elem.find('.df-thumbs');
+
     this.slides.each(function(index) {
-      $('<div class="df-thumb" unselectable="on" style="width: ' + df.thumbsWidth + 'px; height: ' + df.thumbsHeight + 'px;"><div style="width: ' + df.slidesWidth + 'px; height: ' + df.slidesHeight + 'px; transform-origin: 0 0; transform: scale(' + (df.thumbsWidth / df.slidesWidth) + ')" onselectstart="event.stopPropagation();return false;" onmousedown="return false;">' + this.innerHTML + '</div></div>').click(function() {
+      $('<div class="df-thumb" unselectable="on">' +
+          '<div style="transform-origin: 0 0" onselectstart="return false;" onmousedown="return false;">' +
+            this.innerHTML +
+          '</div>' +
+        '</div>').click(function() {
         df.slide(index);
         return false;
-      }).appendTo(thumbsWrap);
+      }).appendTo(df.thumbsWrap);
     });
     this.thumbs = elem.find('.df-thumb');
+
+    this.resize();
+
+    window.addEventListener('resize', function() {
+      df.resize();
+    }, true);
 
     this.slide(0);
   }
 
+  Df.prototype.resize = function() {
+    var df = this;
+
+    df.slidesWidth = df.slidesWrap.width();
+    df.slidesHeight = df.slidesWrap.height();
+
+    df.slidesOffs = (df.slides.length > 1) ? (df.slides.slice(1, 2).position().top - parseInt(df.slides.first().css('marginTop'))) : 0;
+
+    df.thumbsWidth = df.thumbsWrap.width();
+    df.thumbsHeight = df.thumbsWidth / (df.slidesWidth / df.slidesHeight);
+    df.thumbs.each(function(index) {
+      this.style.width = df.thumbsWidth + 'px';
+      this.style.height = df.thumbsHeight + 'px';
+      this.children[0].style.width = df.slidesWidth + 'px';
+      this.children[0].style.height = df.slidesHeight + 'px';
+      this.children[0].style.transform = 'scale(' + (df.thumbsWidth / df.slidesWidth) + ')';
+    });
+  }
   Df.prototype.slide = function(index) {
     index = Math.min(Math.max(index, 0), this.slides.length - 1);
     if (index == -1) {

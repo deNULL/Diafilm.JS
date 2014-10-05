@@ -33,6 +33,7 @@
           margin-bottom: 12px;
           padding: 40px 40px;
           transition: margin-top 0.3s;
+          overflow: hidden;
         }
         .df-thumbs {
           height: 100%;
@@ -47,6 +48,7 @@
           opacity: 0.4;
           transition: opacity 0.3s;
           box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+          overflow: hidden;
         }
         .df-thumb div {
           padding: 40px 40px;
@@ -78,7 +80,7 @@
     <div class="container">
       <div id="about">
         <div class="row" style="height: 500px; margin-bottom: 15px;">
-          <div class="df-slides col-md-9">
+          <div class="df-slides col-xs-9">
             <div class="df-slide">
               <center style="padding-top: 60px">
                 <h2>Диафильм</h2>
@@ -101,9 +103,9 @@
             <div class="df-slide">
               <h4>Разметка:</h4>
 <pre>
-<span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#274796; '> </span><span style='color:#074726; '>id</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"about"</span><span style='color:#a65700; '>></span>
+<span style='or:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#274796; '> </span><span style='color:#074726; '>id</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"about"</span><span style='color:#a65700; '>></span>
   <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#274796; '> </span><span style='color:#074726; '>class</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"row"</span><span style='color:#274796; '> </span><span style='color:#074726; '>style</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"</span><span style='color:#bb7977; font-weight:bold; '>height</span><span style='color:#808030; '>:</span><span style='color:#274796; '> </span><span style='color:#008c00; '>500</span><span style='color:#006600; '>px</span><span style='color:#800080; '>;</span><span style='color:#274796; '> </span><span style='color:#bb7977; font-weight:bold; '>margin-bottom</span><span style='color:#808030; '>:</span><span style='color:#274796; '> </span><span style='color:#008c00; '>15</span><span style='color:#006600; '>px</span><span style='color:#800080; '>;</span><span style='color:#0000e6; '>"</span><span style='color:#a65700; '>></span>
-    <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#274796; '> </span><span style='color:#074726; '>class</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"df-slides col-md-9"</span><span style='color:#a65700; '>></span>
+    <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#274796; '> </span><span style='color:#074726; '>class</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"df-slides col-xs-9"</span><span style='color:#a65700; '>></span>
       <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#274796; '> </span><span style='color:#074726; '>class</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"df-slide"</span><span style='color:#a65700; '>></span>
         ...
       <span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#a65700; '>></span>
@@ -111,7 +113,7 @@
         ...
       <span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#a65700; '>></span>
     <span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#a65700; '>></span>
-    <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#274796; '> </span><span style='color:#074726; '>class</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"df-thumbs col-md-3"</span><span style='color:#a65700; '>></span><span style='color:#696969; '>&lt;!-- заполнится автоматически --></span><span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#a65700; '>></span>
+    <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#274796; '> </span><span style='color:#074726; '>class</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"df-thumbs col-xs-3"</span><span style='color:#a65700; '>></span><span style='color:#696969; '>&lt;!-- заполнится автоматически --></span><span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#a65700; '>></span>
   <span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#a65700; '>></span>
   <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#274796; '> </span><span style='color:#074726; '>class</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"df-controls row"</span><span style='color:#a65700; '>></span>
     <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>button</span><span style='color:#274796; '> </span><span style='color:#074726; '>class</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"btn"</span><span style='color:#274796; '> </span><span style='color:#074726; '>onclick</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"about.slide(0);"</span><span style='color:#a65700; '>></span>« В начало<span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>button</span><span style='color:#a65700; '>></span>
@@ -140,7 +142,8 @@
               <ul>
                 <li><strong>slide(index)</strong> — перейти на слайд с номером <strong>index</strong>,
                 <li><strong>prev([offset])</strong> — перейти к предыдущему слайду (или сместиться на <strong>offset</strong> слайдов назад),
-                <li><strong>next([offset])</strong> — перейти к следующему слайду (или сместиться на <strong>offset</strong> слайдов вперёд).
+                <li><strong>next([offset])</strong> — перейти к следующему слайду (или сместиться на <strong>offset</strong> слайдов вперёд),
+                <li><strong>resize()</strong> — обновить размеры превью после изменения размеров корневого элемента.
               </ul>
               <h4>Свойства</h4>
               <ul>
@@ -167,16 +170,16 @@
               </ul>
             </div>
           </div>
-          <div class="df-thumbs col-md-3"></div>
+          <div class="df-thumbs col-xs-3"></div>
         </div>
         <div class="df-controls row">
-          <div class="col-md-3">
+          <div class="col-xs-3">
             <button id="aboutReset" type="button" class="btn btn-block btn-lg btn-default" onclick="about.slide(0); return false;">« В начало</button>
           </div>
-          <div class="col-md-3">
+          <div class="col-xs-3">
             <button id="aboutPrev" type="button" class="btn btn-block btn-lg btn-default" onclick="about.prev(); return false;">« Назад</button>
           </div>
-          <div class="col-md-6">
+          <div class="col-xs-6">
             <button id="aboutNext" type="button" class="btn btn-block btn-lg btn-primary" onclick="about.next(); return false;">Следующий слайд »</button>
           </div>
         </div>
