@@ -11,7 +11,7 @@
 
     this.slides.each(function(index) {
       $('<div class="df-thumb" unselectable="on">' +
-          '<div style="transform-origin: 0 0" onselectstart="return false;" onmousedown="return false;">' +
+          '<div onselectstart="return false;" onmousedown="return false;">' +
             this.innerHTML +
           '</div>' +
         '</div>').click(function() {
@@ -41,11 +41,19 @@
     df.thumbsWidth = df.thumbsWrap.width();
     df.thumbsHeight = df.thumbsWidth / (df.slidesWidth / df.slidesHeight);
     df.thumbs.each(function(index) {
-      this.style.width = df.thumbsWidth + 'px';
-      this.style.height = df.thumbsHeight + 'px';
-      this.children[0].style.width = df.slidesWidth + 'px';
-      this.children[0].style.height = df.slidesHeight + 'px';
-      this.children[0].style.transform = 'scale(' + (df.thumbsWidth / df.slidesWidth) + ')';
+      $(this).css({
+        width: df.thumbsWidth + 'px',
+        height: df.thumbsHeight + 'px'
+      });
+      $(this.children[0]).css({
+        width: df.slidesWidth + 'px',
+        height: df.slidesHeight + 'px',
+        transform: 'scale(' + (df.thumbsWidth / df.slidesWidth) + ')',
+        webkitTransform: 'scale(' + (df.thumbsWidth / df.slidesWidth) + ')',
+        mozTransform: 'scale(' + (df.thumbsWidth / df.slidesWidth) + ')',
+        msTransform: 'scale(' + (df.thumbsWidth / df.slidesWidth) + ')',
+        oTransform: 'scale(' + (df.thumbsWidth / df.slidesWidth) + ')',
+      });
     });
   }
   Df.prototype.slide = function(index) {
