@@ -10,13 +10,17 @@
     <meta name="description" content="JavaScript-библиотека для показа простых презентаций">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!--link rel="stylesheet" href="css/bootstrap.min.css"-->
+    <link rel="stylesheet" href="css/bootstrap-lumen.css">
     <style>
         body {
           padding-top: 50px;
           padding-bottom: 20px;
         }
 
+        #about {
+          height: 500px;
+        }
         .fullscreen {
           position: absolute;
           top: 20px;
@@ -56,11 +60,10 @@
           overflow-y: scroll;
           padding-left: 6px;
           padding-right:20px;
-          position: relative;
-          transition: opacity 0.5s;
+          transition: right 0.5s;
         }
         .df-thumbs:hover {
-          opacity: 1;
+          right: 0;
         }
         .df-thumb {
           margin: 6px 0;
@@ -89,8 +92,17 @@
         .df-thumb.active, .df-thumb:hover {
           opacity: 1;
         }
+        .row {
+          margin-left: 0px;
+          margin-right: 0px;
+        }
         .df-controls {
+          margin: 15px -15px;
 
+          -moz-user-select: none;
+          -webkit-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
         }
     </style>
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
@@ -105,7 +117,7 @@
 
     <div class="container">
       <div id="about">
-        <div class="row" style="height: 500px; margin-bottom: 15px;">
+        <div class="row" style="height: 100%">
           <div class="df-slides col-xs-9">
             <button type="button" class="btn btn-lg btn-default fullscreen" onclick="about.fullscreen();"><span class="glyphicon glyphicon-resize-full"></span></button>
             <div class="df-slide">
@@ -202,7 +214,7 @@
           </div>
           <div class="df-thumbs col-xs-3"></div>
         </div>
-        <div class="df-controls row">
+        <div class="df-controls row" unselectable="on">
           <div class="col-xs-3">
             <button id="aboutReset" type="button" class="btn btn-block btn-lg btn-default" onclick="about.slide(0); return false;">« В начало</button>
           </div>
@@ -215,7 +227,7 @@
         </div>
       </div>
 
-      <hr>
+      <hr style="width: 100%; margin-top: 75px">
 
       <footer>
         <p>&copy; Денис Ольшин 2014</p>

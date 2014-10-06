@@ -33,6 +33,7 @@
       } else {
         df.next();
       }
+      return false;
     });
 
     this.slide(0);
@@ -74,7 +75,7 @@
 
     df.fs = toggle;
 
-    var wrap = df.slidesWrap.get(0);
+    var wrap = df.elem.get(0);
     if (toggle) {
       if (wrap.requestFullscreen) {
         wrap.requestFullscreen();
@@ -85,6 +86,22 @@
       } else if (wrap.webkitRequestFullscreen) {
         wrap.webkitRequestFullscreen();
       }
+
+      df.elem.css({
+        width: '100%',
+        height: '100%'
+      });
+      df.slidesWrap.css({
+        width: '100%',
+        height: '100%'
+      });
+      df.thumbsWrap.css({
+        position: 'absolute',
+        top: 0,
+        bottom: 0,
+        right: '-25%',
+        width: '25%'
+      })
     } else {
       if (document.exitFullscreen) {
         document.exitFullscreen();
@@ -98,6 +115,22 @@
       if (document.msExitFullscreen) {
         document.msExitFullscreen();
       }
+
+      df.elem.css({
+        width: '',
+        height: ''
+      });
+      df.slidesWrap.css({
+        width: '',
+        height: ''
+      });
+      df.thumbsWrap.css({
+        position: '',
+        top: '',
+        bottom: '',
+        right: '',
+        width: ''
+      });
     }
     df.resize();
   }
