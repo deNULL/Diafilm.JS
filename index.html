@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css/bootstrap-lumen.css">
     <style>
         body {
+          background: #f8f8f8;
           padding-top: 50px;
           padding-bottom: 20px;
         }
@@ -28,9 +29,6 @@
           padding: 10px 10px 7px 12px;
           opacity: 0;
           transition: opacity 0.5s;
-        }
-        .fullscreen:active, .fullscreen:focus {
-          outline: none !important;
         }
         .df-slides:hover .fullscreen {
           opacity: 0.8;
@@ -104,6 +102,18 @@
           -ms-user-select: none;
           user-select: none;
         }
+
+        /** Lumen theme tweaks **/
+        .btn {
+          border-top-width: 1px;
+          outline: none !important;
+        }
+        .btn-lg {
+          font-size: 16px;
+          text-transform: none;
+          font-weight: normal;
+          letter-spacing: 0.2px;
+        }
     </style>
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="css/main.css">
@@ -144,7 +154,7 @@
               <h4>Разметка:</h4>
 <pre>
 <span style='or:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#274796; '> </span><span style='color:#074726; '>id</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"about"</span><span style='color:#a65700; '>></span>
-  <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#274796; '> </span><span style='color:#074726; '>class</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"row"</span><span style='color:#274796; '> </span><span style='color:#074726; '>style</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"</span><span style='color:#bb7977; font-weight:bold; '>height</span><span style='color:#808030; '>:</span><span style='color:#274796; '> </span><span style='color:#008c00; '>500</span><span style='color:#006600; '>px</span><span style='color:#800080; '>;</span><span style='color:#274796; '> </span><span style='color:#bb7977; font-weight:bold; '>margin-bottom</span><span style='color:#808030; '>:</span><span style='color:#274796; '> </span><span style='color:#008c00; '>15</span><span style='color:#006600; '>px</span><span style='color:#800080; '>;</span><span style='color:#0000e6; '>"</span><span style='color:#a65700; '>></span>
+  <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#274796; '> </span><span style='color:#074726; '>class</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"row"</span><span style='color:#a65700; '>></span>
     <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#274796; '> </span><span style='color:#074726; '>class</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"df-slides col-xs-9"</span><span style='color:#a65700; '>></span>
       <span style='color:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#274796; '> </span><span style='color:#074726; '>class</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"df-slide"</span><span style='color:#a65700; '>></span>
         ...
