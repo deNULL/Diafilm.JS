@@ -178,9 +178,12 @@
 <pre>
 <span style='color:#800000; font-weight:bold; '>var</span> about <span style='color:#808030; '>=</span> <span style='color:#800000; font-weight:bold; '>new</span> Diafilm<span style='color:#808030; '>(</span>$<span style='color:#808030; '>(</span><span style='color:#0000e6; '>'#about'</span><span style='color:#808030; '>)</span><span style='color:#808030; '>,</span> <span style='color:#800080; '>{</span>
   onSlide<span style='color:#800080; '>:</span> <span style='color:#800000; font-weight:bold; '>function</span><span style='color:#808030; '>(</span><span style='color:#797997; '>index</span><span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
-    $<span style='color:#808030; '>(</span><span style='color:#0000e6; '>'#aboutReset, #aboutPrev'</span><span style='color:#808030; '>)</span><span style='color:#808030; '>.</span>toggleClass<span style='color:#808030; '>(</span><span style='color:#0000e6; '>'disabled'</span><span style='color:#808030; '>,</span> <span style='color:#797997; '>index</span> <span style='color:#808030; '>&lt;=</span> <span style='color:#008c00; '>0</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
-    $<span style='color:#808030; '>(</span><span style='color:#0000e6; '>'#aboutNext'</span><span style='color:#808030; '>)</span><span style='color:#808030; '>.</span>toggleClass<span style='color:#808030; '>(</span><span style='color:#0000e6; '>'disabled'</span><span style='color:#808030; '>,</span> <span style='color:#797997; '>index</span> <span style='color:#808030; '>>=</span> <span style='color:#808030; '>(</span><span style='color:#800000; font-weight:bold; '>this</span><span style='color:#808030; '>.</span>slides<span style='color:#808030; '>.</span>length <span style='color:#808030; '>-</span> <span style='color:#008c00; '>1</span><span style='color:#808030; '>)</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+    $<span style='color:#808030; '>(</span><span style='color:#0000e6; '>'#aboutReset, #aboutPrev'</span><span style='color:#808030; '>)</span><span style='color:#808030; '>.</span>attr<span style='color:#808030; '>(</span><span style='color:#0000e6; '>'disabled'</span><span style='color:#808030; '>,</span> <span style='color:#797997; '>index</span> <span style='color:#808030; '>&lt;=</span> <span style='color:#008c00; '>0</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+    $<span style='color:#808030; '>(</span><span style='color:#0000e6; '>'#aboutNext'</span><span style='color:#808030; '>)</span><span style='color:#808030; '>.</span>attr<span style='color:#808030; '>(</span><span style='color:#0000e6; '>'disabled'</span><span style='color:#808030; '>,</span> <span style='color:#797997; '>index</span> <span style='color:#808030; '>>=</span> <span style='color:#808030; '>(</span><span style='color:#800000; font-weight:bold; '>this</span><span style='color:#808030; '>.</span>slides<span style='color:#808030; '>.</span>length <span style='color:#808030; '>-</span> <span style='color:#008c00; '>1</span><span style='color:#808030; '>)</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
   <span style='color:#800080; '>}</span>
+<span style='color:#800080; '>}</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+$<span style='color:#808030; '>(</span>document<span style='color:#808030; '>)</span><span style='color:#808030; '>.</span>keydown<span style='color:#808030; '>(</span><span style='color:#800000; font-weight:bold; '>function</span><span style='color:#808030; '>(</span>event<span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
+  about<span style='color:#808030; '>.</span>keydown<span style='color:#808030; '>(</span>event<span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
 <span style='color:#800080; '>}</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
 </pre>
               <p>Конструктор <strong>Diafilm</strong> принимает два параметра: <strong>elem</strong>, jQuery-объект, содержащий корневой элемент презентации, и <strong>opts</strong>, объект опций. Пока что поддерживается одна опция: функция-коллбэк <strong>onSlide</strong>, вызываемая при смене слайда и принимающая единственным параметром индекс слайда.</p>
@@ -217,8 +220,7 @@
                 <li>Автоматический скроллинг списка слайдов</li>
                 <li><s>Полноэкранный режим</s></li>
                 <li>Всплывающие панели в полноэкранном режиме</li>
-                <li>Переход по нажатиям клавиш (вправо, влево, пробел)</li>
-                <li>Исправить гличащие кнопки, когда они становятся задисэйбленными</li>
+                <li><s>Переход по нажатиям клавиш (вправо, влево, пробел)</s></li>
               </ul>
             </div>
           </div>
@@ -255,6 +257,9 @@
           $('#aboutReset, #aboutPrev').attr('disabled', index <= 0);
           $('#aboutNext').attr('disabled', index >= (this.slides.length - 1));
         }
+      });
+      $(document).keydown(function(event) {
+        about.keydown(event);
       });
     </script>
 

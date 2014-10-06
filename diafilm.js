@@ -39,6 +39,36 @@
     this.slide(0);
   }
 
+  Df.prototype.keydown = function(event) {
+    if (event.which >= 49 && event.which <= 57) { // 1-9
+      this.slide(event.which - 49);
+      return false;
+    }
+
+    switch (event.which) {
+      case 39: // right
+      case 40: // down
+      case 34: // page down
+      case 32: // space
+      case 13: // enter
+        this.next();
+        return false;
+      case 37: // left
+      case 38: // up
+      case 33: // page up
+        this.prev();
+        return false;
+      case 36: // home
+        this.slide(0);
+        return false;
+      case 35: // end
+        this.slide(this.slides.length - 1);
+        return false;
+      case 48: // 0
+        this.slide(9);
+        return false;
+    }
+  }
   Df.prototype.resize = function() {
     var df = this;
 
@@ -65,6 +95,7 @@
         oTransform: 'scale(' + (df.thumbsWidth / df.slidesWidth) + ')',
       });
     });
+    df.thumbsOffs = (df.thumbs.length > 1) ? (df.thumbs.slice(1, 2).position().top - df.thumbs.first().position().top) : 0;
   }
   Df.prototype.fullscreen = function(toggle) {
     var df = this;
@@ -145,6 +176,21 @@
 
     this.slides.toggleClass('active', false).slice(index, index + 1).toggleClass('active', true);
     this.thumbs.toggleClass('active', false).slice(index, index + 1).toggleClass('active', true);
+
+    var thumb = this.thumbs.slice(index, index + 1);
+    var thumbTop = thumb.position().top;
+    var thumbBottom = thumbTop + thumb.outerHeight() + parseFloat(thumb.css('marginBottom')) * 2;
+    var scrollTop = this.thumbsWrap.scrollTop();
+    if (thumbTop < 0) {
+      this.thumbsWrap.animate({
+        scrollTop: scrollTop + thumbTop
+      }, 100);
+    } else
+    if (thumbBottom > this.thumbsWrap.height()) {
+      this.thumbsWrap.animate({
+        scrollTop: scrollTop - (this.thumbsWrap.height() - thumbBottom)
+      }, 100);
+    }
 
     if (this.opts.onSlide) {
       this.opts.onSlide.call(this, this.index);
