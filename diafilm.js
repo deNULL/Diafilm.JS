@@ -28,6 +28,7 @@
     });
 
     $(document).on('webkitfullscreenchange mozfullscreenchange fullscreenchange MSFullscreenChange', function() {
+      df.fs = (document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement);
       df.resize();
     });
 
@@ -92,7 +93,6 @@
   Df.prototype.resize = function() {
     var df = this;
 
-    df.fs = (document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement);
     if (df.fs) {
       df.elem.css({
         width: '100%',
@@ -171,6 +171,10 @@
         wrap.mozRequestFullScreen();
       } else if (wrap.webkitRequestFullscreen) {
         wrap.webkitRequestFullscreen();
+      } else {
+        df.slidesWrap.css({
+          position: 'absolute'
+        });
       }
     } else {
       if (document.exitFullscreen) {
@@ -184,6 +188,10 @@
       } else
       if (document.msExitFullscreen) {
         document.msExitFullscreen();
+      } else {
+        df.slidesWrap.css({
+          position: ''
+        });
       }
     }
     df.resize();
