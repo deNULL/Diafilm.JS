@@ -166,34 +166,45 @@
     df.resize();
   }
   Df.prototype.slide = function(index) {
-    index = Math.min(Math.max(index, 0), this.slides.length - 1);
+    var df = this;
+    if (typeof index != 'number') {
+      df.slides.each(function(i) {
+        if (this.id == index) {
+          df.slide(i);
+          return false;
+        }
+      });
+      return;
+    }
+
+    index = Math.min(Math.max(index, 0), df.slides.length - 1);
     if (index == -1) {
       return;
     }
 
-    this.index = index;
-    this.slides.first().css('marginTop', - index * this.slidesOffs);
+    df.index = index;
+    df.slides.first().css('marginTop', - index * df.slidesOffs);
 
-    this.slides.toggleClass('active', false).slice(index, index + 1).toggleClass('active', true);
-    this.thumbs.toggleClass('active', false).slice(index, index + 1).toggleClass('active', true);
+    df.slides.toggleClass('active', false).slice(index, index + 1).toggleClass('active', true);
+    df.thumbs.toggleClass('active', false).slice(index, index + 1).toggleClass('active', true);
 
-    var thumb = this.thumbs.slice(index, index + 1);
+    var thumb = df.thumbs.slice(index, index + 1);
     var thumbTop = thumb.position().top;
     var thumbBottom = thumbTop + thumb.outerHeight() + parseFloat(thumb.css('marginBottom')) * 2;
-    var scrollTop = this.thumbsWrap.scrollTop();
+    var scrollTop = df.thumbsWrap.scrollTop();
     if (thumbTop < 0) {
-      this.thumbsWrap.animate({
+      df.thumbsWrap.animate({
         scrollTop: scrollTop + thumbTop
       }, 100);
     } else
-    if (thumbBottom > this.thumbsWrap.height()) {
-      this.thumbsWrap.animate({
-        scrollTop: scrollTop - (this.thumbsWrap.height() - thumbBottom)
+    if (thumbBottom > df.thumbsWrap.height()) {
+      df.thumbsWrap.animate({
+        scrollTop: scrollTop - (df.thumbsWrap.height() - thumbBottom)
       }, 100);
     }
 
-    if (this.opts.onSlide) {
-      this.opts.onSlide.call(this, this.index);
+    if (df.opts.onSlide) {
+      df.opts.onSlide.call(df, df.index);
     }
   }
   Df.prototype.prev = function(offset) {

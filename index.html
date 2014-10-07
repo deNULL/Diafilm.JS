@@ -130,7 +130,7 @@
         <div class="row" style="height: 100%">
           <div class="df-slides col-xs-9">
             <button type="button" class="btn btn-lg btn-default fullscreen" onclick="about.fullscreen();"><span class="glyphicon glyphicon-resize-full"></span></button>
-            <div class="df-slide">
+            <div class="df-slide" id="aboutIntro">
               <center style="padding-top: 60px">
                 <h2>Диафильм</h2>
                 <p class="lead">JavaScript-библиотека для показа простых презентаций</p>
@@ -138,31 +138,31 @@
                 <p style="margin-top: 140px">Денис Ольшин<br/><a href="http://denull.ru/" target="_blank">denull.ru</a></p>
               </center>
             </div>
-            <div class="df-slide">
+            <div class="df-slide" id="aboutFeatures">
               <h4>Фичи:</h4>
               <ul>
                 <li>Полноэкранный режим</li>
                 <li>Возможность добавления несколько презентаций на страницу</li>
-                <li>Смена слайдов колесом мышки или <a href="about:blank" onclick="about.slide(2); return false;">клавишами</a></li>
+                <li>Смена слайдов колесом мышки или <a href="about:blank" onclick="about.slide('aboutKeys'); return false;">клавишами</a></li>
                 <li>Автоматически генерируемые превьюшки для быстрой навигации</li>
-                <li>Простая <a href="about:blank" onclick="about.slide(3); return false;">HTML-разметка</a> (каждый слайд — блок класса <strong>df-slide</strong>)</li>
+                <li>Простая <a href="about:blank" onclick="about.slide('aboutHTML'); return false;">HTML-разметка</a> (каждый слайд — блок класса <strong>df-slide</strong>)</li>
                 <li>Возможность ссылаться на страницы (см. предыдущий пункт этого списка)</li>
                 <li>Компактный размер JS-кода (5.7 Кб в несжатом виде)</li>
                 <li>Минимум ограничений на оформление (у корневого элемента должны быть только дочерние блоки <strong>df-slides</strong> (и <strong>df-slide</strong> внутри), <strong>df-thumbs</strong> и <strong>df-controls</strong>, их внешний вид почти не контролируется библиотекой)</li>
               </ul>
             </div>
-            <div class="df-slide">
+            <div class="df-slide" id="aboutKeys">
               <h4>Клавиши:</h4>
               <ul>
-                <li><strong>→</strong>, <strong>↓</strong>, <strong>Page Down</strong>, <strong>пробел</strong> — следующий слайд,</li>
+                <li><strong>→</strong>, <strong>↓</strong>, <strong>Page Down</strong>, <strong>Enter</strong>, <strong>пробел</strong> — следующий слайд,</li>
                 <li><strong>←</strong>, <strong>↑</strong>, <strong>Page Up</strong> — предыдущий слайд,</li>
                 <li><strong>1</strong>, <strong>2</strong>, <strong>3</strong>, <strong>4</strong>, <strong>5</strong>, <strong>6</strong>, <strong>7</strong>, <strong>8</strong>, <strong>9</strong>, <strong>0</strong> — переход к слайду с первого по десятый,</li>
                 <li><strong>Home</strong> — переход к первому слайду,</li>
                 <li><strong>End</strong> — переход к последнему слайду.</li>
               </ul>
-              <p>Для обработки нажатий клавиш следует передавать соответствующее событие в метод <a href="about:blank" onclick="about.slide(5); return false;"><strong>keydown(event)</strong></a> — например, из обработчика этого события у <strong>document</strong>.</p>
+              <p>Для обработки нажатий клавиш следует передавать соответствующее событие в метод <a href="about:blank" onclick="about.slide('aboutKeys'); return false;"><strong>keydown(event)</strong></a> — например, из обработчика этого события у <strong>document</strong>.</p>
             </div>
-            <div class="df-slide">
+            <div class="df-slide" id="aboutHTML">
               <h4>Разметка:</h4>
 <pre>
 <span style='or:#a65700; '>&lt;</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#274796; '> </span><span style='color:#074726; '>id</span><span style='color:#808030; '>=</span><span style='color:#0000e6; '>"about"</span><span style='color:#a65700; '>></span>
@@ -185,7 +185,7 @@
 <span style='color:#a65700; '>&lt;/</span><span style='color:#800000; font-weight:bold; '>div</span><span style='color:#a65700; '>></span>
 </pre>
             </div>
-            <div class="df-slide">
+            <div class="df-slide" id="aboutJS">
               <h4>Инициализация:</h4>
 <pre>
 <span style='color:#800000; font-weight:bold; '>var</span> about <span style='color:#808030; '>=</span> <span style='color:#800000; font-weight:bold; '>new</span> Diafilm<span style='color:#808030; '>(</span>$<span style='color:#808030; '>(</span><span style='color:#0000e6; '>'#about'</span><span style='color:#808030; '>)</span><span style='color:#808030; '>,</span> <span style='color:#800080; '>{</span>
@@ -200,12 +200,12 @@ $<span style='color:#808030; '>(</span>document<span style='color:#808030; '>)</
 </pre>
               <p>Конструктор <strong>Diafilm</strong> принимает два параметра: <strong>elem</strong>, jQuery-объект, содержащий корневой элемент презентации, и <strong>opts</strong>, объект опций. Пока что поддерживается одна опция: функция-коллбэк <strong>onSlide</strong>, вызываемая при смене слайда и принимающая единственным параметром индекс слайда.</p>
 
-              <p>О методах и свойствах созданного объекта — на <a href="about:blank" onclick="about.next(); return false;">следующем слайде</a>.</p>
+              <p>О методах и свойствах созданного объекта — на <a href="about:blank" onclick="about.slide('aboutAPI'); return false;">следующем слайде</a>.</p>
             </div>
-            <div class="df-slide">
+            <div class="df-slide" id="aboutAPI">
               <h4>Методы</h4>
               <ul>
-                <li><strong>slide(index)</strong> — перейти на слайд с номером <strong>index</strong>,
+                <li><strong>slide(index)</strong> — перейти на слайд с номером <strong>index</strong> или на слайд с таким идентификатором (если это не число),
                 <li><strong>prev([offset])</strong> — перейти к предыдущему слайду (или сместиться на <strong>offset</strong> слайдов назад),
                 <li><strong>next([offset])</strong> — перейти к следующему слайду (или сместиться на <strong>offset</strong> слайдов вперёд),
                 <li><strong>resize()</strong> — обновить размеры превью после изменения размеров корневого элемента,
@@ -220,14 +220,14 @@ $<span style='color:#808030; '>(</span>document<span style='color:#808030; '>)</
                 <li><strong>thumbs</strong> — jQuery-объект, содержащий превью всех слайдов презентации (автоматически созданные блоки с классом <strong>df-thumb</strong>).
               </ul>
             </div>
-            <div class="df-slide">
+            <div class="df-slide" id="aboutDepends">
               <h4>Зависимости</h4>
               <ul>
                 <li>jQuery</li>
               </ul>
               <p>Это демо сверстано с использование <a href="http://html5boilerplate.com/" target="_blank">HTML5 Boilerplate</a> (и, в частности, <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a>), но я не вижу причин, по которым без них нельзя было бы обойтись.</p>
             </div>
-            <div class="df-slide">
+            <div class="df-slide" id="aboutTODO">
               <h4>TODO</h4>
               <ul>
                 <li><s>Автоматический скроллинг списка слайдов</s></li>
