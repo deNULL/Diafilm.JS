@@ -31,10 +31,16 @@
       df.resize();
     });
 
-    $(df.slidesWrap).bind('mousewheel', function(event) {
-      if (event.originalEvent.wheelDelta >= 0) {
+    var scrollDist = 0;
+    $(df.slidesWrap).bind('DOMMouseScroll mousewheel', function(event) {
+      scrollDist += event.originalEvent.wheelDelta;
+      //console.log(event.originalEvent.wheelDelta);
+      if (scrollDist >= 120) {
+        scrollDist = 0;
         df.prev();
-      } else {
+      } else
+      if (scrollDist <= -120) {
+        scrollDist = 0;
         df.next();
       }
       return false;
