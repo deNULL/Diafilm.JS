@@ -35,15 +35,25 @@
     $(df.slidesWrap).bind('DOMMouseScroll mousewheel', function(event) {
       scrollDist += event.originalEvent.wheelDelta;
       //console.log(event.originalEvent.wheelDelta);
-      if (scrollDist >= 120) {
+      if (scrollDist >= 200) {
         scrollDist = 0;
         df.prev();
       } else
-      if (scrollDist <= -120) {
+      if (scrollDist <= -200) {
         scrollDist = 0;
         df.next();
       }
       return false;
+    });
+
+    $(this.slidesWrap).bind('touchend', function(event){
+      var now = new Date().getTime();
+      var lastTouch = $(this).data('lastTouch') || now + 1 /** the first time this will make delta a negative number */;
+      var delta = now - lastTouch;
+      if (delta < 200 && delta > 0) {
+        df.fullscreen();
+      }
+      $(this).data('lastTouch', now);
     });
 
     this.slide(0);
