@@ -27,6 +27,10 @@
       df.resize();
     });
 
+    $(document).on('webkitfullscreenchange mozfullscreenchange fullscreenchange MSFullscreenChange', function() {
+      df.resize();
+    });
+
     $(df.slidesWrap).bind('mousewheel', function(event) {
       if (event.originalEvent.wheelDelta >= 0) {
         df.prev();
@@ -71,6 +75,41 @@
   }
   Df.prototype.resize = function() {
     var df = this;
+
+    df.fs = (document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement);
+    if (df.fs) {
+      df.elem.css({
+        width: '100%',
+        height: '100%'
+      });
+      df.slidesWrap.css({
+        width: '100%',
+        height: '100%'
+      });
+      df.thumbsWrap.css({
+        position: 'absolute',
+        top: 0,
+        bottom: 0,
+        right: '-25%',
+        width: '25%'
+      })
+    } else {
+      df.elem.css({
+        width: '',
+        height: ''
+      });
+      df.slidesWrap.css({
+        width: '',
+        height: ''
+      });
+      df.thumbsWrap.css({
+        position: '',
+        top: '',
+        bottom: '',
+        right: '',
+        width: ''
+      });
+    }
 
     df.slidesWidth = df.slidesWrap.width();
     df.slidesHeight = df.slidesWrap.height();
@@ -117,22 +156,6 @@
       } else if (wrap.webkitRequestFullscreen) {
         wrap.webkitRequestFullscreen();
       }
-
-      df.elem.css({
-        width: '100%',
-        height: '100%'
-      });
-      df.slidesWrap.css({
-        width: '100%',
-        height: '100%'
-      });
-      df.thumbsWrap.css({
-        position: 'absolute',
-        top: 0,
-        bottom: 0,
-        right: '-25%',
-        width: '25%'
-      })
     } else {
       if (document.exitFullscreen) {
         document.exitFullscreen();
@@ -146,22 +169,6 @@
       if (document.msExitFullscreen) {
         document.msExitFullscreen();
       }
-
-      df.elem.css({
-        width: '',
-        height: ''
-      });
-      df.slidesWrap.css({
-        width: '',
-        height: ''
-      });
-      df.thumbsWrap.css({
-        position: '',
-        top: '',
-        bottom: '',
-        right: '',
-        width: ''
-      });
     }
     df.resize();
   }
