@@ -163,7 +163,7 @@
 
     var wrap = df.elem.get(0);
     if (toggle) {
-      /*if (wrap.requestFullscreen) {
+      if (wrap.requestFullscreen) {
         wrap.requestFullscreen();
       } else if (wrap.msRequestFullscreen) {
         wrap.msRequestFullscreen();
@@ -171,7 +171,7 @@
         wrap.mozRequestFullScreen();
       } else if (wrap.webkitRequestFullscreen) {
         wrap.webkitRequestFullscreen();
-      } else {*/
+      } else {
         df.elem.css({
           position: 'absolute',
           top: 0,
@@ -180,7 +180,7 @@
         $(document.body).css({
           overflow: 'hidden'
         });
-      //}
+      }
     } else {
       if (document.exitFullscreen) {
         document.exitFullscreen();
